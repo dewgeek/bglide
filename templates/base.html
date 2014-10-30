@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="static/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="static/js/jquery-ui.js"></script> 
+    <script src="static/js/bootstrap.js"></script>
+    <script src="static/js/jquery-cycle2.js"></script>
+    
+
+    
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/jquery-css.css">
+    <link href="static/css/dashboard.css" rel="stylesheet">
+    
+    
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        //Adjusting  height of content
+        $(".total-content").css({
+            height:$(".content_row").height()*2,
+            "overflow-y":"hidden"
+        })
+
+                
+        
+        //Slide Functionality
+        $(".btn").click(function(){
+
+          if($(this).hasClass("dev-apps-btn")){
+            $container = ".dev-apps .content"
+            $span = ".dev-apps-btn span"
+          }
+          else{
+            $container = ".prod-apps .content"
+            $span = ".prod-apps-btn span"
+          }
+          
+          if($($container).css("display") == "none"){
+            $($container).slideDown()
+            $($span).removeClass( "glyphicon-chevron-down" ).addClass( "glyphicon-chevron-up" ); 
+          }
+          else{
+            $($container).slideUp()
+            $($span).removeClass( "glyphicon-chevron-up" ).addClass( "glyphicon-chevron-down" );   
+          }
+          
+        })
+
+      
+        
+        //scroll Functionality
+
+        $dev_scroll_height = $(".dev-apps .data-height").height() - $(".dev-apps .total-content").height() 
+        $prod_scroll_height = $(".prod-apps .data-height").height() - $(".prod-apps .total-content").height() 
+        
+        
+        $(".dev-apps .content .total_content").scrollTop(0)
+        $(".prod-apps .content .total_content").scrollTop(0)
+
+        if($dev_scroll_height > 0){
+
+          $( ".dev-vertical-slider" ).css({height:$(".content_row").height()*2 -20} )  
+
+          $( ".dev-vertical-slider" ).slider({
+            orientation: "vertical",
+            min: 0,
+            max: $dev_scroll_height, 
+            range:"max",
+            value: $dev_scroll_height,
+            
+            slide:function(event,ui){
+                $(".dev-apps .content .total-content").scrollTop( $dev_scroll_height - ui.value)
+                
+            }
+          })
+        }
+        else{
+          $( ".dev-vertical-slider" ).css({display:"none" })   
+        }
+        
+        if($prod_scroll_height > 0){
+          $( ".prod-vertical-slider" ).css({height:$(".content_row").height()*2 -20} )  
+
+          $( ".prod-vertical-slider" ).slider({
+            orientation: "vertical",
+            min: 0,
+            max: $prod_scroll_height, 
+            range:"max",
+            value: $prod_scroll_height,
+            
+            slide:function(event,ui){
+                $(".prod-apps .content .total-content").scrollTop( $prod_scroll_height - ui.value)
+                
+            }
+          })
+        }
+        else{
+          $( ".prod-vertical-slider" ).css({display:"none" })   
+        }
+      });
+
+    </script>
+  </head>
+  <body>
+    
+
+   	<div id="nav_bar" class="container content0">
+			<nav class="navbar  navbar-inverse navbar-fixed-top" role="navigation">
+				<div class="navbar-header">
+    				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav_bar_links">
+      				<span class="icon-bar"></span>
+      				<span class="icon-bar"></span>
+      				<span class="icon-bar"></span>
+      			</button>
+
+	    			<a class="navbar-brand" href="#"><img src="static/images/logo.png" alt="BetaGlide" height="30px"></a>
+  			</div>
+
+
+				<div class="collapse navbar-collapse " id="nav_bar_links">
+          <ul class="nav navbar-nav navbar-left list-inline">
+          
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Switch Application</b> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><p><b>Development Apps</b></p></li>
+                <li class="ul-link">
+                  <a href="#">App1</a>
+                  <ul>
+                    <li><a href="">Version 1.0.0</a></li>
+                    <li><a href="">Version 1.0.1</a></li>
+                    <li><a href="">Version 1.0.2</a></li>
+                  </ul>
+                </li>
+                
+                <li class="ul-link">
+                  <a href="#">App2</a>
+                  <ul>
+                    <li><a href="">Version 1.0.0</a></li>
+                    <li><a href="">Version 1.0.1</a></li>
+                  </ul>
+                </li>
+                <li class="divider"></li>
+                <li><p><b>Production Apps</b></p></li>
+                <li><a href="#">App1</a></li>
+                
+                <li><a href="#">App2</a></li>
+              </ul>
+            </li>
+            
+          </ul>
+  
+          <ul class="nav navbar-nav navbar-right ">
+    				<li><a href="#"><b>Add App</b></a></li>
+            <li><a href="#"><b>Docs</b></a></li>
+    	      <li>
+               <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+              </form>
+ 
+            </li>
+            
+            <li class="dropdown li-btn">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <button class="btn-default navbar-btn navbar-right">    
+                </button>
+              </a>
+              <ul class="dropdown-menu">
+                
+                
+                <li><a href="#">Account</a></li>
+                
+                <li><a href="#">Log out</a></li>
+              </ul>
+            </li>
+
+          </ul>
+    	 </div>			
+		  </nav>	
+	
+    </div>
+    <div id="body_content">
+    {% block content %}
+    {% endblock %}
+    </div>
+</body>
+</html>

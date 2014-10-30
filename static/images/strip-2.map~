@@ -1,0 +1,11 @@
+<img src="Untitled" width="699" height="69" border="0" usemap="#map" />
+
+<map name="map">
+<!-- #$-:Image map file created by GIMP Image Map plug-in -->
+<!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
+<!-- #$-:Please do not edit lines starting with "#$" -->
+<!-- #$VERSION:2.3 -->
+<!-- #$AUTHOR:dew -->
+<area shape="rect" coords="303,1,706,61" alt="Production Apps" href="#prod_apps" />
+<area shape="rect" coords="2,3,302,57" alt="Development Apps" href="#dev_apps" />
+</map>

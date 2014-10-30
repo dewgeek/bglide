@@ -1,0 +1,6 @@
+<img src="static/images/strip-2.png" width="706" height="72" border="0" usemap="#map" />
+
+<map name="map">
+<area shape="rect" coords="12,2,403,67" alt="Development Apps" href="#dev_apps" />
+<area shape="rect" coords="403,0,701,69" alt="Production Apps" href="#prod_apps" />
+</map>

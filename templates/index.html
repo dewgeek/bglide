@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BetaGlide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/written.css" rel="stylesheet">
+    <script src="static/js/jquery-1.10.2.min.js"></script>
+    <script src="static/js/bootstrap.js"></script>
+    
+    <script src="static/js/jquery-cycle2.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#first-map-image").hide()
+        $("#second-map-image").hide()
+        
+        $aboutus_offset = $("#nav_bar").height() + $("#slide_show").height()+$("#how_it_works").height() + $(".dev_apps_container").height() + $(".prod_apps_container").height()
+        
+        $(window).scroll(function() {
+            var height = $(window).scrollTop();
+
+            if(height  < $aboutus_offset) {
+
+                $("#first-map-image").fadeIn()
+                $("#second-map-image").fadeOut()
+                $(".ribbon-left").css({backgroundColor:"#5884C3"})
+                $(".ribbon-right").css({backgroundColor:"#666666"})
+            }
+            if(height > $aboutus_offset &&  height< $aboutus_offset+$("#about_us").height()){
+                $("#first-map-image").fadeOut()
+                $("#second-map-image").fadeIn()
+                $(".ribbon-left").css({backgroundColor:"#666666"})
+                $(".ribbon-right").css({backgroundColor:"#5884C3"})
+            }
+            
+            if(height > $aboutus_offset+$("#about_us").height()){
+                $("#first-map-image").fadeOut()
+                $("#second-map-image").fadeOut() 
+                $(".ribbon-left").css({backgroundColor:"#222222"})
+                $(".ribbon-right").css({backgroundColor:"#222222"})
+            }
+            
+            /*
+            if(height > $prod_apps_offset && height < $aboutus_offset){
+              $("#first-map-image").fadeOut()
+              $("#second-map-image").fadeIn()
+            }
+            */
+        });
+        
+        $(".prod_links").click(function(){
+                $str = $(this).attr("filter")
+                
+                if($str == "#dev_apps"){
+                  $('html, body').animate({
+                      scrollTop: $(".dev_apps_container").offset().top 
+                  }, 1000);  
+                }
+                else{
+                  $('html, body').animate({
+                      scrollTop: $(".prod_apps_container").offset().top -$(".secondary_nav").height()
+
+                  }, 1000);  
+
+                }
+            
+        })
+
+        $('#nav').affix({
+                  offset: {
+                    top: 980
+                  }
+
+            }); 
+        $("#pricing_button").click(function(event){
+          event.preventDefault();
+          $("#pricingModal").modal(
+              {
+                show:true
+              }
+            )
+        })        
+
+        $("#contact_us").click(function(event){
+          event.preventDefault();
+          $("#contactForm").modal(
+              {
+                show:true
+              }
+            )
+        })        
+
+        $("#register_button").click(function(){
+
+          $('#registerForm').modal({show:true})      
+
+        })
+        $("#login_button").click(function () {
+            $("#loginForm").modal({
+              show:true
+            })          
+        })
+
+      
+      })      
+      
+    </script>
+  </head>
+  <body>
+    
+
+   	<div id="nav_bar" class="container content0">
+			<nav class="navbar  navbar-inverse navbar-fixed-top" role="navigation">
+				<div class="navbar-header">
+    				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav_bar_links">
+      			
+      				<span class="icon-bar"></span>
+      				<span class="icon-bar"></span>
+      				<span class="icon-bar"></span>
+      			</button>
+	    			<a class="navbar-brand" href="#"><img src="static/images/logo.png" alt="BetaGlide" height="30px"></a>
+  			</div>
+				<div class="collapse navbar-collapse" id="nav_bar_links">
+				<ul class="nav navbar-nav navbar-right list-inline">
+    				
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Products</b> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Development Apps</a></li>
+                
+                <li><a href="#">Production Apps</a></li>
+                
+              </ul>
+            </li>
+    				<li><a id="pricing_button" href="#"><b>Pricing</b></a></li>
+            <li><a href="/aboutUs"><b>About Us</b></a></li>
+            <li><button class="btn btn-primary navbar-btn" id="login_button">Login</button></li>
+            <li><button class="btn btn-primary navbar-btn" id="register_button">Sign up</button></li>
+  				</ul>
+
+    		</div>			
+			</nav>	
+	
+    </div>
+    <div class="slide_show" id="slide_show">
+      <div class=" container">
+        <div class="cycle-slideshow text-center row">
+          <img src="static/images/pic-1_550.png" class="img-responsive">
+          <img src="static/images/pic-2_550.png" class="img-responsive">
+          <img src="static/images/pic-3_550.png" class="img-responsive">
+        </div>
+        <div class="row">
+          <div class="col-md-2 text-center slide_show_button">
+            <button class="linker">Get Started</button>
+          </div>
+          <div class="col-md-10"></div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="how_it_works" >
+      <div class="container">
+
+        <h1 id="how_it_works" class="text-center prim_heads">How it Works </h1>
+
+        <div class="row">
+
+          <div class="col-md-4 text-center">
+            <a href="#" class="icons icon1">
+              <img class="img-responsive" src="static/images/10_10.png"><span></span>
+            </a>
+            <p class="sec_heads"><b> Performance Monitoring</b><br/></p>
+            <p>
+              Monitor the performance of your app. How its interacts with the device, network and your servers. Figure out low performance devices and OS, target them individually. 
+              <br/><br/>
+            </p>
+          </div>
+
+          <div class="col-md-4 text-center">
+            <a href="#" class="icons icon2">
+              <img  class="img-responsive" src="static/images/10_10.png"><span></span>
+            </a>
+            <p class="sec_heads">
+              <b> Usability Analytics</b><br/>
+            </p>
+            <p>
+              Get insights about Usability of your application. Know how users are using the application and how it looks to the end user. Connect to users for feedback and support. <br/><br/>
+            </p>
+          </div>
+
+          <div class="col-md-4 text-center">
+            <a href="#" class="icons icon3">
+              <img class="img-responsive" src="static/images/10_10.png"><span></span>
+            </a>
+            <p class="sec_heads"><b>Crash Trends</b><br/></p>
+            <p>
+              See the crash trends across devices, OS, network, geography and different user profiles. Get detailed data for each crash. Prevent crashes before they happen. <br/><br/></p>
+          </div>
+
+        </div>
+  
+      </div>
+    </div>
+    
+    <div class="secondary_nav" id="nav">
+        <div class="ribbon-left"></div>
+        <div class="ribbon-right"></div>
+
+      <div class ="container">
+        <div class="row">
+          <div class="col-xs-3 "></div> 
+
+          <div class="col-xs-6 text-center">
+            <img src="static/images/strips-1.png"  class = "img-responsive" id="first-map-image" border="0" usemap="#first-map" />
+            <img src="static/images/strips-2.png"  class = "prod_links img-responsive" id="second-map-image" border="0" usemap="#second-map" />
+
+            <map name="first-map">
+              <area shape="rect" coords="53,0,360,56" filter ="#dev_apps" class="prod_links " alt="Development Apps" href="#dev_apps" />
+              <area shape="rect" coords="393,5,663,45" alt="Production Apps" class="prod_links" filter = "#prod_apps" href="#prod_apps" />
+            </map>
+
+            <map name="second-map">
+              <area shape="rect" coords="59,0,291,46" alt="Development Apps" class="prod_links" href="#dev_apps" filter="#dev_apps"/>
+              <area shape="rect" coords="335,3,648,54" alt="Production Apps" href="#prod_apps" class="prod_links" filter="#prod_apps"/>
+
+              
+            </map>
+          </div>      
+          <div class="col-xs-3 "></div>      
+        </div>
+      </div>
+    </div>    
+        <!--
+        <div id="navbarExample" class="navbar navbar-static">
+          <div class="navbar-inner">
+              <ul class="nav navbar-nav">
+                <li ><a href="#pre_prod_app" ><b>PreProduction Apps</b></a></li>
+                <li ><a href="#prod_app" ><b>Production Apps</b></a></li>
+              </ul>
+          </div>
+          
+          
+
+        </div> 
+        -->
+    <div  class="dev_apps_container" >
+      <div class="container">
+        <h1 class="text-center prim_heads" id="dev_app">Development Applications</h1>          
+
+        <div class="row">
+
+          <div class="col-md-4 sm-6 text-center">
+            <a href="#" class="app app1"><img  src="static/images/10_10.png" class="img-responsive"><span></span></a>
+            <br/><p class="sec_heads"><b >CPU and Memory Usage</b><br/></p>
+            <p>
+             See how much CPU and Memory your app consumes across sessions while being used on test devices. Figure out the slow performance zones in your app. Make your app faster and reliable. </p><br/>          
+          </div>
+
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class="app app2"><img  src="static/images/10_10.png" class="img-responsive"><span></span></a>
+            <br/><p class="sec_heads"><b > Crash Reporting </b><br/></p>
+            <p>
+              Get detailed actionable data and trends about crashes taking place during development. Identify the line of crashing code and see the type of crash. Faster crash minimization and eradication. 
+            </p><br/>          
+          </div>
+
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class=" app app3"><img  src="static/images/10_10.png" class="img-responsive"><span></span></a>
+            <p class="sec_heads"><b class="sec_heads">Version Benchmarking</b><br/></p>
+            <p>
+              Know your app’s performance across devices at activity level. Benchmark it across devices and figure out the high and low performance devices. Device targeting strategy becomes easy. 
+            </p><br/>
+          </div>
+        </div>    
+        <div class="row">
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class="app app4"><img  src="static/images/10_10.png" class="img-responsive"><span></span></a>
+            <p class="sec_heads"><b > User Touch Data</b><br/></p>
+            <p>
+              Data about where the user touched on your application during a session. Visualize how does the app looks on the end user screen. Design apps easily as per user behaviour and device specifications. 
+            </p><br/>          
+          
+          </div>
+
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class="app app5"><img  src="static/images/10_10.png" class="img-responsive"><span></span></a>
+            <p class="sec_heads"><b > Logs for debugging</b><br/></p>
+            <p>
+              Get detailed logs for each session. Get rid of any issues or slow performance zones in your app by using the logs. Creating a bug free app becomes much more easier and fun. 
+            </p><br/>          
+          </div>
+
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class="app app6"><img  src="static/images/10_10.png" class="img-responsive"><span></span></a>
+            <p class="sec_heads"><b> No Coding</b><br/></p>
+            <p>
+              We give you an option to integrate our tool without writing any line of code through automatic code injection. Now you need spend time including a library and calling it. Time to testing reduces drastically. 
+            </p>
+              
+          </div>
+
+        </div>
+        <div class="row text-center">
+          <button class="linker"> Get Started </button>  
+
+        </div>
+      </div>
+    </div> 
+
+    <div  class="prod_apps_container">
+      <div class="container">
+        <h1 class="text-center prim_heads" id="prod_app">Production Applications</h1>          
+
+        <div class="row">
+
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class="app app7"><img  src="static/images/10_10.png"><span></span></a>
+            <br/><p class="sec_heads"><b > Performance Monitoring</b><br/></p>
+            <p>Monitor how much CPU and Memory your app is consuming across devices. Get to know low performing devices,  poor performing locations and low performing zones in app. 
+  </p><br/>          
+          </div>
+
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class="app app8"><img  src="static/images/10_10.png"><span></span></a>
+            <br/><p class="sec_heads"><b > Network Monitoring</b><br/></p>
+            <p>Measure Latency of Network Requests, identify and debug network failures. Makes your application faster by identifying bottlenecks while also avoiding crashes. Allows you to make cloud-enabled apps without compromising on user experience 
+  </p><br/>          
+
+
+          </div>
+
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class="app app9"><img  src="static/images/10_10.png"><span></span></a>
+            <p class="sec_heads"><b class="sec_heads">Crash Reporting</b><br/></p>
+            <p>Visualize crash trends and crash prone zones in the app and as per location. Get to know which type of crash tend to occur more and trace them back to the line of crashing code.  
+  </p><br/>
+              
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class="app app10"><img  src="static/images/10_10.png"><span></span></a>
+            <p class="sec_heads"><b > Heat Maps</b><br/></p>
+            <p>Get heat maps for different locations and user profile. Differentiate between different user activities such as scroll, tap, click etc. Understand how users use your app. 
+  </p><br/>          
+          </div>
+
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class="app app11"><img  src="static/images/10_10.png"><span></span></a>
+            <p class="sec_heads"><b >User Overview</b><br/></p>
+            <p>Each user is unique. Now get to know their device, OS, Location, carrier network profile and IMEI. Reach out to these users to seek feedback, push updates or any way you like. 
+  </p><br/>          
+
+
+          </div>
+
+          <div class="col-sm-6 col-md-4 text-center">
+            <a href="#" class="app app12"><img  src="static/images/10_10.png"><span></span></a>
+            <p  class="sec_heads"><b>Efficient Library </b><br/></p>
+            <p>
+              On average BetaGlide only adds up 30kb to the size of the application. Our memory and network usage are tuned to the minimum so that your app runs seamlessly without any lag. 
+            </p>
+              
+          </div>
+
+        </div>
+        <div class="row text-center">
+          <button class="linker">Get Started</button>      
+        </div>
+      </div>
+    </div> 
+
+  <div class=" about_us" id="about_us">
+    <div class="container">
+      <h1 class="prim_heads text-center">About Us</h1>        
+        
+      <div class="row">
+        <div class="col-xs-12">
+          <p>
+            BetaGlide is a Performance Monitoring, Usability Analytics, Crash reporting and device management platform for mobile apps to be used during development phase as well as when the app is live on app stores. A flagship product of BG Mobility Labs, BetaGlide helps an app developer to make their apps efficient and market ready. Apps which use BetaGlide are faster, more user friendly, stable and have wide customer acceptance. Look at our users below: 
+          </p>
+        </div>
+      </div>  
+      <!--  
+      <div class="row"><div class="col-xs-10 col-xs-offset-1"><h4>BetaGlide in News</h4></div></div>
+      <div class="row">
+
+          <div class="col-md-6 text-center"><a href="#" ><img src="static/images/h.png"></a></div>
+          <div class="col-md-6 text-center"><a href="#"><img src="static/images/e.png"></a></div>
+      </div>      
+     -->
+      <div class="row text-center team">
+        <div class="col-md-12 text-center sec_heads"><h4>An awesome product made by an awesome team</h4></div>
+
+        <div class="col-md-4">
+
+          <img src="static/images/user.png">
+          <p>
+            <b>Amritanshu Anand:</b><br/> Hustler. Always looking for awesome partners and users. Loves to read and travel. Accessible 24X7
+          </p>
+        </div>       
+
+    
+        <div class="col-md-4">
+
+          <img src="static/images/user.png">
+          <p>
+            <b>Amritanshu Anand:</b><br/> Hustler. Always looking for awesome partners and users. Loves to read and travel. Accessible 24X7
+          </p>
+        </div>       
+
+        <div class="col-md-4">
+
+          <img src="static/images/user.png">
+          <p>
+            <b>Amritanshu Anand:</b><br/> Hustler. Always looking for awesome partners and users. Loves to read and travel. Accessible 24X7
+          </p>
+        </div>       
+      </div>
+
+      <div class="row text-center">
+        <div class="col-md-12 sec_heads"><h3></h3> </div>
+        <div class="col-md-12 sec_heads"><h3>Awards</h3> </div>
+        <div class="col-md-12"><img src="static/images/awards.png"></div>
+      </div>
+      
+      
+      <div class="row text-center customers ">
+      <div class="col-md-12 sec_heads"><h3></h3> </div>
+        <h3 class="sec_heads text-center">Customers</h3>            
+          <div class="col-md-2 col-sm-4 col-xs-6"><img src="static/images/customers/cust1.png" class="img-responsive"></div> 
+          <div class="col-md-1 col-sm-4 col-xs-6 "><img src="static/images/customers/cust8.png" class="img-responsive"></div>   
+          
+          <div class="col-md-1 col-sm-2  col-xs-3"><img src="static/images/customers/cust2.png" class="img-responsive"></div>  
+          <div class="col-md-1 col-sm-2  col-xs-3 "><img src="static/images/customers/cust9.png" class="img-responsive"></div>   
+          <div class="col-md-1 col-sm-2  col-xs-3"><img src="static/images/customers/cust5.png" class="img-responsive"></div>   
+          <div class="col-md-1 col-sm-2  col-xs-3"><img src="static/images/customers/cust6.png" class="img-responsive"></div>   
+          <div class="col-md-1 col-sm-4  col-xs-6"><img src="static/images/customers/cust11.png" class="img-responsive"></div>   
+          
+          
+          <div class="col-md-2"><img src="static/images/customers/cust10.png" class="img-responsive" ></div>     
+          <div class="col-md-2"><img src="static/images/customers/cust3.png" class="img-responsive"></div>  
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="sub_footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <p><b>Quick Links</b><br/></p>
+          <ul class="list-unstyled">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">How It Works</a></li>
+            <li><a href="#">Team</a></li>  
+            <li><a href="#">pricing</a></li>  
+          </ul>
+          
+          
+          
+          
+          
+
+        </div>
+        <div class="col-md-3 col-md-offset-3 col-xs-8" >
+          <b>Connect with BetaGlide</b><br/>
+            <iframe src="static/likebox.html" style="border:none; overflow:hidden; max-width:100%; height:68px;background:#b9b2b2;" frameborder="0" scrolling="no"></iframe><br>
+            <a class="link" href="http://www.facebook.com/betaglide"><img class="footer_icons" src="static/images/facebook.png"></a>
+            <a class="link" href=""><img class="footer_icons" src="static/images/linkedin.png"></a>
+            <a class="link" href="http://twitter.com/BetaGlide"><img class="footer_icons" src="static/images/twitter.png"></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="  footer">
+    <div class="container">  
+      <div class="row text-center" >
+        
+        <h5>Copyright 2013-2014, BG Mobility Labs Private Ltd.</h5>
+      </div>
+    </div>  
+  </div>  
+
+  <div class="contactus_strip">
+    <a href="#" id="contact_us"><img src="static/images/contact-us.png"/></a>
+  </div>
+  <div class="modal" id="registerForm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Register</h4>
+          </div>
+
+          <div class="modal-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="inputUsername" placeholder="Desired Username">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Your Email">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Desired Password">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                </div>
+              </div>
+
+              <!--  
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <button type="submit" class="submit-btn">Sign Up</button>
+                </div>
+              </div>
+              -->
+            </form> 
+          </div>
+          
+          <div class="modal-footer">
+            <a href="#" data-dismiss="modal" class="btn">Close</a>
+            <a href="#" class="btn btn-primary">SignUp</a>
+          </div>
+
+        </div>
+      </div>
+    </div>  
+<div class="modal" id="PricingModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Pricing</h4>
+          </div>
+          <div>
+            <p>
+                      BetaGlide is a Performance Monitoring, Usability Analytics, Crash reporting and device management platform for mobile apps to be used during development phase as well as when the app is live on app stores. A flagship product of BG Mobility Labs, BetaGlide helps an app developer to make their apps efficient and market ready. Apps which use BetaGlide are faster, more user friendly, stable and have wide customer acceptance. Look at our users below: 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>      
+  <div class="modal" id="loginForm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title"><b>Login</b></h4>
+          </div>
+
+          <div class="modal-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
+              </div>
+            </form> 
+          </div>
+          
+          <div class="modal-footer">
+            <a href="#">Forgot Password</a>
+            <a href="#" data-dismiss="modal" class="btn">Close</a>
+            <a href="#" class="btn btn-primary">Login</a>
+          </div>
+
+        </div>
+      </div>
+    </div>  
+  <div class="modal" id="contactForm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title"><b>Contact Us</b></h4>
+          </div>
+
+          <div class="modal-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="inputUsername" placeholder="Your Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <textarea class="form-control" id="inputTextarea" placeholder="Your Message" rows = "3"></textarea>
+                  <!--<input type="password" class="form-control" id="inputPassword" placeholder="Your Message">-->
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+
+                  {% for error in contact_form.recaptcha.errors %}
+                      {{ error }}
+                  {% endfor %}
+                  {{ contact_form.recaptcha }}
+  
+                </div>
+              </div>
+            </form> 
+          </div>
+          
+          <div class="modal-footer">
+            
+            <a href="#" data-dismiss="modal" class="btn">Close</a>
+            <a href="#" class="btn btn-primary">Send Message</a>
+          </div>
+
+        </div>
+      </div>
+     </div> 
+
+	</body>  
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

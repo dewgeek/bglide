@@ -1,0 +1,10 @@
+.wrapper{
+	width: 100%;
+	margin-top: 0 !important;
+}
+.content1{
+	height: 400px;
+	background-image:"../images/140.jpg";
+	margin-top: 0 !important;
+}
+.container { box-sizing: border-box; padding: 0px; }
